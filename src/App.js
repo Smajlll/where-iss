@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { isVisible } from '@testing-library/user-event/dist/utils';
 
 function App() {
 
