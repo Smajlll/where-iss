@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import './App.css';
+import About from './About.js';
 import icon from './satellite.png'
 import 'leaflet/dist/leaflet.css';
+import { BrowserRouter, Routes, Route, Link, Router } from 'react-router-dom';
 
 function App() {
 
@@ -41,6 +43,15 @@ function App() {
       .catch(error => console.error('error:', error));
   }, []);
 
+  let date = new Date(time * 1000);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1; // Month is 0-indexed, so we add 1
+    const day = date.getDate();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+
+
   if (isLoading) {
     return <div className='loading'>
       <h1>Loading...</h1>
@@ -53,24 +64,24 @@ function App() {
     if (visibility === 'daylight') {
       isVisible = "The ISS is in daylight! ☀️";
     } else {
-      isVisible = "The ISS is in the Earths shadow. :(";
+      isVisible = "The ISS is in the Earth's shadow. :(";
     }
-
-
-
 
   return (
     
-  <div>    
+  <div className='App'>    
     <div className="name">
       <h1>Where is the ISS?</h1>
+      <BrowserRouter>
+      <Link to="/about" className='about-link'>→</Link>
+      </BrowserRouter>
     </div>
 
     <div className='center'>
     
     <div className='data'>
       <h2>Current Location:</h2>
-      <p>Timestamp: {time} (somehow convert this, thanks)</p>
+      <p>Timestamp: {day}/{month}/{year} - {hours}:{minutes}:{seconds}</p>
       <p>Latitude: {latitude}</p>
       <p>Longitude: {longitude}</p>
       <p>Altitude: {altitude} km</p>
@@ -104,4 +115,11 @@ function App() {
   );
 }
 
-export default App;
+export default function routing() {
+  return (
+    <Router>
+    <Routes>
+      <Route path="/about" element={<About />} />
+    </Routes>
+    </Router>
+)};
