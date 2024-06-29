@@ -5,7 +5,7 @@ import './App.css';
 import About from './About.js';
 import icon from './satellite.png'
 import 'leaflet/dist/leaflet.css';
-import { BrowserRouter, Routes, Route, Link, Router } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
 
@@ -72,9 +72,7 @@ function App() {
   <div className='App'>    
     <div className="name">
       <h1>Where is the ISS?</h1>
-      <BrowserRouter>
       <Link to="/about" className='about-link'>→</Link>
-      </BrowserRouter>
     </div>
 
     <div className='center'>
@@ -119,7 +117,9 @@ export default function routing() {
   return (
     <Router>
     <Routes>
+      <Route path="/" element={<App />} />
       <Route path="/about" element={<About />} />
     </Routes>
     </Router>
 )};
+

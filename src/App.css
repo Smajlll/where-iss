@@ -3,6 +3,16 @@ body {
   color: #e6e0e0;
 }
 
+.about-text {
+  height: 80vh;
+  line-height: 1px;
+  flex-direction: column;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
 .about-link {
   position: fixed;
   top: 20px;
